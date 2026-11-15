@@ -1,0 +1,326 @@
+/*
+  NekoLab open source.
+  The studio's dot-grid lab notebook: ink and ballpoint blue with a yellow
+  highlighter, titles in Bricolage Grotesque. Each project is a door into its
+  own colours: Sumi's washi and vermilion, Purr's yellow tile and cocoa.
+*/
+
+@font-face {
+  /* SIL Open Font License 1.1, see assets/bricolage-grotesque-OFL.txt. */
+  font-family: "Bricolage Grotesque";
+  src: url("assets/bricolage-grotesque.woff2") format("woff2");
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --paper: #f3f5fb;
+  --dots: #d3d9e9;
+  --ink: #1b2040;
+  --soft: #555c7e;
+  --pen: #2f49e8;
+  --marker: #ffe14a;
+  --line: rgba(27, 32, 64, 0.16);
+  --shadow: rgba(27, 32, 64, 0.45);
+  --display: "Bricolage Grotesque", system-ui, sans-serif;
+  --body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --ease: cubic-bezier(.2, .8, .2, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --paper: #14172b;
+    --dots: #272c4b;
+    --ink: #eef0fa;
+    --soft: #a6accb;
+    --pen: #9dadff;
+    --marker: #6a5d14;
+    --line: rgba(238, 240, 250, 0.18);
+    --shadow: rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* Project colours. A brand class swaps the same tokens the studio uses. */
+.brand-sumi {
+  --paper: #f1ede6;
+  --dots: #ddd6c9;
+  --ink: #1f1e1b;
+  --soft: #5a564f;
+  --pen: #c8462c;
+  --marker: #f3cdbf;
+  --line: rgba(31, 30, 27, 0.16);
+}
+
+.brand-purr {
+  --paper: #fcf5d2;
+  --dots: #eadf9f;
+  --ink: #2b211c;
+  --soft: #6b5a50;
+  --pen: #8a7266;
+  --marker: #f7e886;
+  --line: rgba(43, 33, 28, 0.16);
+}
+
+@media (prefers-color-scheme: dark) {
+  .brand-sumi {
+    --paper: #191816;
+    --dots: #2b2926;
+    --ink: #ece8e0;
+    --soft: #a19c94;
+    --pen: #e4694d;
+    --marker: #6b2c1f;
+    --line: rgba(236, 232, 224, 0.16);
+  }
+
+  .brand-purr {
+    --paper: #1f1b12;
+    --dots: #343020;
+    --ink: #f6efd9;
+    --soft: #c4b8a3;
+    --pen: #e9d155;
+    --marker: #5e5214;
+    --line: rgba(246, 239, 217, 0.16);
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(var(--dots) 1.1px, transparent 1.3px) 0 0 / 22px 22px,
+    var(--paper);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { display: block; max-width: 100%; height: auto; }
+
+a { color: inherit; }
+
+h1, h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 800;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+h1 { font-size: clamp(40px, 6.4vw, 68px); letter-spacing: -0.02em; }
+
+p { margin: 0; }
+
+:focus-visible {
+  outline: 3px solid var(--pen);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+}
+
+/* Text links get a swipe of highlighter on hover. */
+.link {
+  font-weight: 650;
+  text-decoration: underline;
+  text-decoration-color: var(--pen);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  background: linear-gradient(var(--marker), var(--marker)) no-repeat 0 88% / 0% 42%;
+  transition: background-size 0.3s var(--ease);
+}
+
+.link:hover,
+.door:hover .link {
+  background-size: 100% 42%;
+}
+
+/* ---------- Header ---------- */
+
+.site-header { padding-bottom: 40px; }
+
+.brand {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.brand-cat {
+  width: 46px;
+  transform: rotate(-4deg);
+  filter: drop-shadow(0 3px 5px rgba(27, 32, 64, 0.2));
+  transition: transform 0.4s var(--ease);
+}
+
+.brand:hover .brand-cat { transform: rotate(4deg) scale(1.06); }
+
+/* The logo's own lettering, inked in the page's colour. */
+.wordmark {
+  width: 132px;
+  margin-bottom: 5px;
+  fill: currentColor;
+}
+
+/* ---------- Page ---------- */
+
+.view {
+  display: grid;
+  gap: 48px;
+}
+
+.intro {
+  display: grid;
+  gap: 18px;
+  padding-top: 16px;
+}
+
+/* "loves", as a heart that beats now and then. */
+.heart {
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  vertical-align: -0.04em;
+  color: #e5484d;
+}
+
+.heart svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+  animation: heartbeat 6s ease-in-out infinite;
+}
+
+@media (prefers-color-scheme: dark) {
+  .heart { color: #ff6b72; }
+}
+
+/* Two quick beats, then a long rest. */
+@keyframes heartbeat {
+  0%, 12%, 100% { transform: scale(1); }
+  4% { transform: scale(1.14); }
+  8% { transform: scale(1.08); }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.lede {
+  max-width: 54ch;
+  font-size: 19px;
+  color: var(--soft);
+}
+
+/* ---------- Project doors ---------- */
+
+.doors {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.door {
+  display: grid;
+  grid-template-rows: 1fr auto auto auto;
+  justify-items: start;
+  gap: 12px;
+  min-height: 340px;
+  padding: 28px;
+  border: 2px solid var(--line);
+  border-radius: 28px;
+  color: var(--ink);
+  background:
+    radial-gradient(var(--dots) 1.1px, transparent 1.3px) 0 0 / 22px 22px,
+    var(--paper);
+  box-shadow: 0 22px 40px -24px var(--shadow);
+  text-decoration: none;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+.door:hover {
+  transform: translateY(-5px) rotate(-0.6deg);
+  box-shadow: 0 30px 48px -24px var(--shadow);
+}
+
+.door + .door:hover { transform: translateY(-5px) rotate(0.6deg); }
+
+.door-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+
+.door-icon {
+  width: 96px;
+  border-radius: 22px;
+  transform: rotate(-5deg);
+  transition: transform 0.4s var(--ease);
+}
+
+.door:hover .door-icon { transform: rotate(0deg) scale(1.05); }
+
+.door h2 { font-size: 34px; }
+
+.door p {
+  max-width: 40ch;
+  color: var(--soft);
+}
+
+.door .link { margin-top: 6px; }
+
+/* ---------- Footer ---------- */
+
+.footer-bar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px 24px;
+  margin-top: 96px;
+  padding-top: 24px;
+  border-top: 2px dashed var(--line);
+  color: var(--soft);
+  font-size: 13.5px;
+}
+
+/* The cat supervising QA, sitting on the footer line. */
+.footer-cat {
+  position: absolute;
+  right: 40px;
+  bottom: 100%;
+  width: 40px;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 760px) {
+  .doors { grid-template-columns: 1fr; }
+  .door { min-height: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
