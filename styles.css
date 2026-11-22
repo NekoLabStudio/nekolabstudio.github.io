@@ -2,7 +2,7 @@
   NekoLab open source.
   The studio's dot-grid lab notebook: ink and ballpoint blue with a yellow
   highlighter, titles in Bricolage Grotesque. Each project is a door into its
-  own colours: Purr's yellow tile and cocoa, Trill's cream and ink.
+  own colours: Purr's yellow tile and cocoa, Sumi's washi and vermilion.
 */
 
 @font-face {
@@ -53,14 +53,14 @@
   --line: rgba(43, 33, 28, 0.16);
 }
 
-.brand-trill {
-  --paper: #f3f2ee;
-  --dots: #dedcd4;
-  --ink: #1c1b22;
-  --soft: #5c5a63;
-  --pen: #26272f;
-  --marker: #f7e886;
-  --line: rgba(28, 27, 34, 0.16);
+.brand-sumi {
+  --paper: #f1ede6;
+  --dots: #ddd6c9;
+  --ink: #1f1e1b;
+  --soft: #5a564f;
+  --pen: #c8462c;
+  --marker: #f3cdbf;
+  --line: rgba(31, 30, 27, 0.16);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -74,14 +74,14 @@
     --line: rgba(246, 239, 217, 0.16);
   }
 
-  .brand-trill {
-    --paper: #18171c;
-    --dots: #2a2930;
-    --ink: #f3f2ee;
-    --soft: #a9a7ae;
-    --pen: #e9d155;
-    --marker: #4a4416;
-    --line: rgba(243, 242, 238, 0.16);
+  .brand-sumi {
+    --paper: #191816;
+    --dots: #2b2926;
+    --ink: #ece8e0;
+    --soft: #a19c94;
+    --pen: #e4694d;
+    --marker: #6b2c1f;
+    --line: rgba(236, 232, 224, 0.16);
   }
 }
 
@@ -277,11 +277,12 @@ p { margin: 0; }
 
 .door h2 { font-size: 34px; }
 
-/* The wordmarks at one scale (40px for Trill's 856 units), so their letters match; Purr's box
-   reaches below for its "p", so it moves down to share Trill's baseline. */
+/* Purr's wordmark box reaches below for its "p", so it moves down; Sumi's title, set in type,
+   moves down to share its baseline. */
 .door-title { margin-top: 6px; }
 .door-title img { display: block; height: auto; }
 .brand-purr .door-title { margin-top: 15.5px; margin-bottom: -9px; }
+.brand-sumi h2 { margin-top: 11px; margin-bottom: -1px; }
 
 .door p {
   align-self: start;
